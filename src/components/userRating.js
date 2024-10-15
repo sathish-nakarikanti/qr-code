@@ -67,33 +67,47 @@ const StarRating = () => {
     const username = 'ptejazd@gmail.com';
     const password = 'satya1359'; // password + security token
 
-    const token = localStorage.getItem('salesforceToken'); // Retrieve the token
-
     try {
-      let total = 0; // Initialize total count
+      // Fetch access token
+      const response = await axios.post(salesforceAuthUrl, null, {
+        params: {
+          grant_type: 'password',
+          client_id: clientId,
+          client_secret: clientSecret,
+          username: username,
+          password: password,
+        },
+      });
 
+      const accessToken = response.data.access_token;
+      const instanceUrl = response.data.instance_url;
+
+      console.log('Access Token:', accessToken);
       // Convert array of objects to a single object with string values and calculate total
+      let total = 0; // Initialize total count
       const singleObject = ratings.reduce((acc, curr) => {
-          const key = Object.keys(curr)[0]; // Get the key from the current object
-          const value = curr[key]; // Get the value from the current object
-          total += value; // Add the value to the total
-          acc[key] = String(value); // Set the key in the accumulator to the string value
-          return acc; // Return the accumulated object
-      }, {});
-      
-      console.log(singleObject); // The object with string values
-      console.log('Total:', total); // The total of all values
-      singleObject.avgRating = (total / ratings.length).toFixed(1);
+        const key = Object.keys(curr)[0]; // Get the key from the current object
+        const value = curr[key]; // Get the value from the current object
+        total += value; // Add the value to the total
+        acc[key] = String(value); // Set the key in the accumulator to the string value
+        return acc; // Return the accumulated object
+    }, {});
+    
+    console.log(singleObject); // The object with string values
+    console.log('Total:', total); // The total of all values
+    singleObject.avgRating = (total / ratings.length).toFixed(1);
+
       // Step 2: Submit the form data to Salesforce using the access token
       const salesforceApiUrl = 'https://intelogik-68e-dev-ed.my.salesforce.com/services/apexrest/feedback/';
       const result = await axios.post(salesforceApiUrl, {
         "ratingElements": singleObject,
         "userId":  generateRandom10DigitNumber()
-    }, {
-        headers: {
-          Authorization: `Bearer ${token}`, // Use the access token
-          'Content-Type': 'application/json',
-        }});
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`, // Use the access token
+        'Content-Type': 'application/json',
+      }});
       console.log('Form data submitted:', result.data);
       alert('Form data successfully submitted to Salesforce!');
       setRatings( items.map(item => ({ [item]: 0 })))

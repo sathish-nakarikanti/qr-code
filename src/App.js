@@ -8,7 +8,7 @@ import SalesforceLogin from './auth';
 
 const App = () => {
   // Replace with the actual URL of your form
-  const formUrl = 'http://localhost:3000/user-rating'; 
+  const formUrl = 'https://qrcodescanner-63f2a251e001.herokuapp.com/user-rating'; 
 
   return (
     <Router>
@@ -16,8 +16,8 @@ const App = () => {
         {/* <h1>QR Code Example</h1> */}
         {/* <QRCodeGenerator formUrl={formUrl} /> */}
         <Routes>
-          <Route path="/" element={<SalesforceLogin />} />
-          <Route path="/qr-code" element={<QRCodeGenerator formUrl={formUrl} />} />
+          {/* <Route path="/" element={<SalesforceLogin />} /> */}
+          <Route path="/" element={<QRCodeGenerator formUrl={formUrl} />} />
           <Route path="/user-rating" element={<Form />} />
           {/* Add other routes here */}
         </Routes>
