@@ -1,9 +1,9 @@
 {
-    "name": "my-app",
+    "name": "qrcodescanner",
     "version": "1.0.0",
+    "main": "server.js",
     "scripts": {
-      "start": "node server/server.js",
-      "heroku-postbuild": "cd client && npm install && npm run build"
+      "start": "node server.js"
     },
     "dependencies": {
     }
