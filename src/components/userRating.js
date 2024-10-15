@@ -65,7 +65,7 @@ const StarRating = () => {
     const clientId = '3MVG9wt4IL4O5wvJIl7cdJQWvXM0hWUcFkpGCrK92BWKX.G3c3l.68cCxmQLk89Q_9szLdpdXxZ3_cNmOyHke';
     const clientSecret = '9BDA8BD23671233E6351654F60219E872FBD62F546BFDA0DB5F5ECDFAD74578A';
     const username = 'ptejazd@gmail.com';
-    const password = 'satya1359'; // password + security token
+    const password = 'satya1359FFUsS9A3JvpgVmX834A9gNHzO'; // password + security token
 
     try {
       // Fetch access token
