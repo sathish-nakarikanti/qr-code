@@ -69,15 +69,13 @@ const StarRating = () => {
 
     try {
       // Fetch access token
-      const response = await axios.post(salesforceAuthUrl, null, {
-        params: {
+      const response = await axios.post(salesforceAuthUrl, {
           grant_type: 'password',
           client_id: clientId,
           client_secret: clientSecret,
           username: username,
           password: password,
-        },
-      });
+        });
 
       const accessToken = response.data.access_token;
       const instanceUrl = response.data.instance_url;
