@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 const clientId = '3MVG9wt4IL4O5wvJIl7cdJQWvXM0hWUcFkpGCrK92BWKX.G3c3l.68cCxmQLk89Q_9szLdpdXxZ3_cNmOyHke'; // From Salesforce Connected App
-const redirectUri = 'http://localhost:3000/qr-code'; // Your callback URL for localhost
+const redirectUri = 'https://qrcodescanner-63f2a251e001.herokuapp.com/qr-code'; // Your callback URL for localhost
 
 
 const SalesforceLogin = () => {

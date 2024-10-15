@@ -26,7 +26,7 @@ const QRCodeGenerator = ({ formUrl }) => {
   return (
     <div style={{textAlign:"center", marginTop:"50px"}}>
       <h2>Scan the QR Code to open the form</h2>
-      <QRCodeSVG value="http://localhost:3000/user-rating" size={256} />
+      <QRCodeSVG value="https://qrcodescanner-63f2a251e001.herokuapp.com/user-rating" size={256} />
     </div>
   );
 };
