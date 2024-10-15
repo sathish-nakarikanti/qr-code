@@ -69,7 +69,7 @@ const StarRating = () => {
 
     try {
       // Fetch access token
-      const response = await axios.post("https://qrcodescanner-63f2a251e001.herokuapp.com/api/authenticate");
+      const response = await axios.post("https://qrcodescannernode-8459795be34c.herokuapp.com/api/authenticate");
 
       // const accessToken = response.data.access_token;
       // const instanceUrl = response.data.instance_url;
