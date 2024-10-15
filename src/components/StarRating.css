@@ -1,0 +1,88 @@
+.rating-form {
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    margin-top: 50px;
+  }
+  
+  .rating-item {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .rating-item label {
+    flex: 1;
+    font-weight: bold;
+  }
+  
+  .star-rating {
+    display: flex;
+    cursor: pointer;
+  }
+  
+  .star {
+    font-size: 24px;
+    color: gray;
+    transition: color 0.2s;
+  }
+  
+  .star.filled {
+    color: gold;
+  }
+  
+  .submit-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-left: 350px;
+    margin-bottom: 50px;
+  }
+  .next-button{
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-left: 500px;
+    margin-bottom: 50px;
+  }
+  .previous-button{
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-bottom: 50px;
+  }
+  .button-container {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Space out the buttons if needed */
+    margin-top: 20px; /* Optional: add some spacing from the top */
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  .rating-options {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin: 5px 0;
+    cursor: pointer;
+  }
+  
+  input[type="radio"] {
+    margin-right: 10px;
+  }
+  
