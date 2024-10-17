@@ -100,3 +100,27 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px; /* Optional: spacing between label and input */
+  }
+
+  label {
+    margin-bottom: 5px; /* Space between label and input */
+  }
+
+  input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #ebebc4; /* Light background color */
+    color: #333; /* Text color */
+  }
+
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }

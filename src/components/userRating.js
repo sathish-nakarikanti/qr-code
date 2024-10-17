@@ -33,6 +33,8 @@ const StarRating = () => {
   );
   const [showScreen, setShowScreen] = useState(1);
   const [showButton, setShowButton] = useState(true);
+  const [customerName, setCustomerName] = useState('')
+  const [nameError, setNameError] = useState(false)
 
   const handleRatingChange = (index, rating) => {
     const newRatings = [...ratings];
@@ -40,10 +42,26 @@ const StarRating = () => {
     setRatings(newRatings);
   };
 
+  const validateField =  () => {
+      let validate = true;
+      if(customerName.trim() === "" || customerName === null){
+        validate = false
+      }
+    return validate
+  }
+
   const handleNext = (e) => {
-    e.preventDefault();
-    setShowScreen(2);
+    e.preventDefault();  // Prevent the form from reloading the page
+    let validationStatus = validateField();
+    console.log(validationStatus,'validationStatus');
+    if(validationStatus){
+      setNameError(false);
+      setShowScreen(2);
+    }else{
+      setNameError(true);
+    }
   };
+  
 
   const handlePrevious = (e) => {
     e.preventDefault();
@@ -51,7 +69,10 @@ const StarRating = () => {
   };
   console.log(ratings,'ratings');
   
-
+  const handleInput = (e) => {
+    setCustomerName(e.target.value);
+    setNameError(false);
+  }
 
   function generateRandom10DigitNumber() {
     // Generate a random number between 1000000000 and 9999999999
@@ -89,6 +110,7 @@ const StarRating = () => {
     console.log(singleObject); // The object with string values
     console.log('Total:', total); // The total of all values
     singleObject.avgRating = (total / ratings.length).toFixed(1);
+    singleObject.customerName = customerName
 
       // Step 2: Submit the form data to Salesforce using the access token
       const salesforceApiUrl = 'https://intelogik-68e-dev-ed.my.salesforce.com/services/apexrest/feedback/';
@@ -106,19 +128,31 @@ const StarRating = () => {
       setRatings( items.map(item => ({ [item]: 0 })))
       setShowButton(true)
       setShowScreen(1)
+      setCustomerName("");
+      setNameError(false)
     } catch (error) {
       console.error('Error submitting data to Salesforce:', error);
       alert('Failed to submit data to Salesforce. Please check the console for errors.');
       setShowButton(true)
       setShowScreen(1)
+      setCustomerName("");
+      setNameError(false)
     }
   };
+  
 
   console.log(ratings,'ratings')
+  console.log(customerName,'customerName');
+  console.log(nameError,'nameError')
   return (
     <form className="rating-form">
       <h1 style={{textAlign:'center', marginBottom:"30px"}}>Please Rate Your Experience</h1>
-      <div>
+      <div style={{marginLeft:"30px"}}>
+      {showScreen === 1 && <div class="input-container">
+      <label>*Enter Your Name</label>
+      <input type="text" value={customerName} placeholder="Enter Your Name" onChange={(e) => handleInput(e)} />
+      {nameError && <span className="error-message">Name is required</span>}
+    </div>}
         {showScreen === 1 && firstScreen.map((obj, index) => {
           const currentRating = Object.values(ratings[index])[0]; // Get current rating for the item
           return (
@@ -143,7 +177,7 @@ const StarRating = () => {
         {showScreen === 1 && <button type="submit" onClick={handleNext} className="next-button">Next</button>}
       </div>
 
-      <div>
+      <div style={{marginLeft:"30px"}}>
         {showScreen === 2 && secondScreen.map((obj, index) => {
           const currentRating = Object.values(ratings[index + firstScreen.length])[0]; // Adjust index for second screen
           return (
