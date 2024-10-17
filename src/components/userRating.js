@@ -32,6 +32,7 @@ const StarRating = () => {
     items.map(item => ({ [item]: 0 })) // Initialize each item with a rating of 0
   );
   const [showScreen, setShowScreen] = useState(1);
+  const [showButton, setShowButton] = useState(true);
 
   const handleRatingChange = (index, rating) => {
     const newRatings = [...ratings];
@@ -59,7 +60,7 @@ const StarRating = () => {
 }
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setShowButton(false)
     // Step 1: Authenticate to Salesforce to get access token
     const salesforceAuthUrl = 'https://login.salesforce.com/services/oauth2/token';
     const clientId = '3MVG9wt4IL4O5wvJIl7cdJQWvXM0hWUcFkpGCrK92BWKX.G3c3l.68cCxmQLk89Q_9szLdpdXxZ3_cNmOyHke';
@@ -103,16 +104,20 @@ const StarRating = () => {
       console.log('Form data submitted:', result.data);
       alert('Form data successfully submitted to Salesforce!');
       setRatings( items.map(item => ({ [item]: 0 })))
+      setShowButton(true)
+      setShowScreen(1)
     } catch (error) {
       console.error('Error submitting data to Salesforce:', error);
       alert('Failed to submit data to Salesforce. Please check the console for errors.');
+      setShowButton(true)
+      setShowScreen(1)
     }
   };
 
   console.log(ratings,'ratings')
   return (
     <form className="rating-form">
-      <h1>Rate Your Experience</h1>
+      <h1 style={{textAlign:'center', marginBottom:"30px"}}>Please Rate Your Experience</h1>
       <div>
         {showScreen === 1 && firstScreen.map((obj, index) => {
           const currentRating = Object.values(ratings[index])[0]; // Get current rating for the item
@@ -163,7 +168,7 @@ const StarRating = () => {
         {showScreen === 2 && (
           <div className="button-container">
             <button type="button" onClick={handlePrevious} className="previous-button">Previous</button>
-            <button type="submit" onClick={handleSubmit} className="submit-button">Submit Ratings</button>
+            {showButton && <button type="submit" onClick={handleSubmit} className="submit-button">Submit</button>}
           </div>
         )}
       </div>
