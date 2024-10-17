@@ -39,7 +39,7 @@
     border-radius: 5px;
     cursor: pointer;
     margin-top: 30px;
-    margin-left: 50px;
+    margin-left: 40px;
     margin-bottom: 50px;
   }
   .next-button{
@@ -65,7 +65,7 @@
   }
   .button-container {
     display: flex; /* Use flexbox for alignment */
-    justify-content: space-between; /* Space out the buttons if needed */
+    justify-content: space-evenly; /* Space out the buttons if needed */
     margin-top: 20px; /* Optional: add some spacing from the top */
   }
   
@@ -85,4 +85,18 @@
   input[type="radio"] {
     margin-right: 10px;
   }
-  
+  .loader {
+    border: 5px solid #f3f3f3; /* Light grey */
+    border-top: 5px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+    margin-top: 30px;
+    margin-left: 0px;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

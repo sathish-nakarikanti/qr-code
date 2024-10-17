@@ -168,7 +168,8 @@ const StarRating = () => {
         {showScreen === 2 && (
           <div className="button-container">
             <button type="button" onClick={handlePrevious} className="previous-button">Previous</button>
-            {showButton && <button type="submit" onClick={handleSubmit} className="submit-button">Submit</button>}
+            {showButton ? <button type="submit" onClick={handleSubmit} className="submit-button">Submit</button> : <div class="loader"></div>
+          }
           </div>
         )}
       </div>
